@@ -1,40 +1,59 @@
 <template lang="html">
   <div id="app">
+    <pm-header/>
     <div class="container">
       <div class="logo">
         <img src="./assets/logo.png" alt="Logo">
       </div>
       <div class="form-group">
         <label for="searchQuery"><strong>Ingrese el nombre del track, artista o álbum:</strong></label>
-        <input type="text" class="form-control" v-model="searchQuery" placeholder="Ej: trevor rabin, the race of his life">
+        <input type="text" class="form-control" v-on:keyup.enter="search" v-model="searchQuery" placeholder="Ej: trevor rabin, the race of his life">
       </div>
       <button class="btn btn-primary" @click="search">Buscar</button>
-      <h4>{{ searchTotalResults }}</h4>
-      <ul>
-        <li v-for="track in tracks">
-          <img :src="track.album.images[2].url" :alt="track.album.name">
-          {{ track.artists[0].name}} - {{ track.album.name }}
-        </li>
-      </ul>
+      <pm-loader v-show="isLoading"/>
+      <div v-show="!isLoading">
+        <h5>{{ searchTotalResults }}</h5>
+        <div class="row">
+          <div v-for="t in tracks">
+            <pm-track :track="t"/>
+          </div>
+        </div>
+      </div>
     </div>
+    <pm-footer/>
   </div>
 </template>
 
 <script>
-  import trackService from './services/track'
+  // Services
+  import trackService from '@/services/track'
+
+  // Components
+  import PmFooter from '@/components/layout/Footer.vue'
+  import PmHeader from '@/components/layout/Header.vue'
+  import PmTrack from '@/components/Track.vue'
+
+  // Components shared
+  import PmLoader from '@/components/shared/Loader.vue'
 
   export default {
     name: 'app',
+    components: {
+      PmFooter,
+      PmHeader,
+      PmTrack,
+      PmLoader
+    },
     data () {
       return {
+        isLoading: false,
         searchQuery: '',
-        tracks: [],
-        total: 0
+        tracks: []
       }
     },
     computed: {
       searchTotalResults () {
-        return `Encontrados: ${this.tracks.length}`
+        return `Total de resultados: ${this.tracks.length}`
       }
     },
     methods: {
@@ -43,9 +62,12 @@
           return ''
         }
 
+        this.isLoading = true
+
         trackService.search(this.searchQuery)
           .then(res => {
             this.tracks = res.tracks.items
+            this.isLoading = false
           })
       }
     }
@@ -55,7 +77,6 @@
 <style lang="scss">
 #app {
   color: #2c3e50;
-  margin-top: 25px;
 }
 
 ul {
@@ -67,7 +88,7 @@ a {
   color: #42b983;
 }
 
-h4 { margin-top: 25px; }
+h5 { margin: 25px 0; }
 
 .logo {
   margin-bottom: 25px;
