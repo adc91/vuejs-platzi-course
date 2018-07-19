@@ -14,8 +14,8 @@
       <div v-show="!isLoading">
         <h5>{{ searchTotalResults }}</h5>
         <div class="row">
-          <div v-for="t in tracks">
-            <pm-track :track="t"/>
+          <div class="col-sm-6 col-md-4 col-lg-4" v-for="t in tracks">
+            <pm-track :track="t" :class="{ 'is-active' : t.id === selectedTrack.id }" @select="setSelectedTrack"/>
           </div>
         </div>
       </div>
@@ -47,6 +47,7 @@
     data () {
       return {
         isLoading: false,
+        selectedTrack: '',
         searchQuery: '',
         tracks: []
       }
@@ -69,12 +70,18 @@
             this.tracks = res.tracks.items
             this.isLoading = false
           })
+      },
+      setSelectedTrack (track) {
+        this.selectedTrack = track
+        window.open(this.selectedTrack.url)
       }
     }
   }
 </script>
 
 <style lang="scss">
+@import "./scss/main.scss";
+
 #app {
   color: #2c3e50;
 }
