@@ -4,7 +4,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ track.name }}</h5>
       <p class="card-text">{{ track.artists[0].name }}</p>
-      <a href="javascript:void(0);" @click="selectTrack()" class="btn btn-primary">Abrir URL</a>
+      <a href="javascript:void(0);" @click="selectTrack()" class="btn btn-primary">Escuchar Preview</a>
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ export default {
         id: this.track.id,
         url: this.track.external_urls.spotify
       })
+      this.$bus.$emit('set-track', this.track)
     }
   }
 }

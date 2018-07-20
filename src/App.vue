@@ -14,6 +14,8 @@
 
       <button class="btn btn-primary" @click="search">Buscar</button>
 
+      <pm-player/>
+
       <pm-loader v-show="isLoading"/>
 
       <div v-show="!isLoading">
@@ -24,7 +26,7 @@
         </pm-notification>
 
         <div class="row">
-          <div class="col-sm-6 col-md-4 col-lg-4" v-for="t in tracks">
+          <div class="col-sm-6 col-md-3 col-lg-3" v-for="t in tracks" v-if="t.preview_url">
             <pm-track :track="t" :class="{ 'is-active' : t.id === selectedTrack.id }" @select="setSelectedTrack"/>
           </div>
         </div>
@@ -44,6 +46,7 @@
   import PmFooter from '@/components/layout/Footer.vue'
   import PmHeader from '@/components/layout/Header.vue'
   import PmTrack from '@/components/Track.vue'
+  import PmPlayer from '@/components/Player.vue'
 
   // Components shared
   import PmLoader from '@/components/shared/Loader.vue'
@@ -56,7 +59,8 @@
       PmHeader,
       PmTrack,
       PmLoader,
-      PmNotification
+      PmNotification,
+      PmPlayer
     },
     data () {
       return {
@@ -112,7 +116,6 @@
       },
       setSelectedTrack (track) {
         this.selectedTrack = track
-        window.open(this.selectedTrack.url)
       }
     }
   }
