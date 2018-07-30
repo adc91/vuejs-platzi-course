@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="container" v-if="track && track.album">
     <div class="row">
       <div class="col-md-2">
         <img :src="track.album.images[0].url" :alt="track.album.name" class="rounded-circle">
