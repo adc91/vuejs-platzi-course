@@ -12,8 +12,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // Plugins custom
 import EventBus from '@/plugins/event-bus'
 
+// Filter custom
+import msToMm from '@/filters/ms-to-mm'
+
 Vue.use(VueRouter)
 Vue.use(EventBus)
+Vue.use(msToMm)
 
 const vueRoutes = new VueRouter({
   routes: routes,

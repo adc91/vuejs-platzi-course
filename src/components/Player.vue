@@ -6,8 +6,9 @@
       </div>
       <div class="col-md-10">
         <strong>{{ track.name }}</strong>
-        <div class="album">{{ track.album.name }}</div>  
-        <audio :src="track.preview_url" controls autoplay="true"></audio>  
+        <div class="album">{{ track.album.name }}</div>
+        <div class="album">{{ track.duration_ms|ms-to-mm }}</div>
+        <audio :src="track.preview_url" controls autoplay="true"></audio>
       </div>
     </div>
 	</div>
