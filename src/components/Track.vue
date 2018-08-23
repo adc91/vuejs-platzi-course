@@ -4,8 +4,8 @@
     <div class="card-body">
       <h5 class="card-title">{{ track.name }}</h5>
       <p class="card-text">{{ track.artists[0].name }}</p>
-      <a href="javascript:void(0);" @click="selectTrack()" class="btn btn-primary">Preview</a>
-      <a href="javascript:void(0);" @click="goToTrack(track.id)" class="btn btn-primary">Detalle</a>
+      <button @click="selectTrack()" class="btn btn-primary">Preview</button>
+      <button @click="goToTrack(track.id)" class="btn btn-default">Detalle</button>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
   },
   methods: {
     selectTrack () {
+      if (!this.track.preview_url) { return }
       this.$emit('select', {
         id: this.track.id,
         url: this.track.external_urls.spotify

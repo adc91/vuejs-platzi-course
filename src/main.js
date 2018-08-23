@@ -15,9 +15,13 @@ import EventBus from '@/plugins/event-bus'
 // Filter custom
 import msToMm from '@/filters/ms-to-mm'
 
+// Directives custom
+import blur from '@/directives/blur'
+
 Vue.use(VueRouter)
 Vue.use(EventBus)
 Vue.use(msToMm)
+Vue.use(blur)
 
 const vueRoutes = new VueRouter({
   routes: routes,

@@ -23,8 +23,8 @@
         </pm-notification>
 
         <div class="row">
-          <div class="col-sm-6 col-md-3 col-lg-3" v-for="t in tracks" v-if="t.preview_url">
-            <pm-track :track="t" :class="{ 'is-active' : t.id === selectedTrack.id }" @select="setSelectedTrack"/>
+          <div class="col-sm-6 col-md-3 col-lg-3" v-for="t in tracks">
+            <pm-track v-blur="t.preview_url" :track="t" :class="{ 'is-active' : t.id === selectedTrack.id }" @select="setSelectedTrack"/>
           </div>
         </div>
       </div>
