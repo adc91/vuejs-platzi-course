@@ -1,11 +1,9 @@
-<template>
-<div class="container">
-	<div class="col-md-4">
-		<div :class="'alert alert-' + className">
-			<slot name="body"></slot>
-		</div>
-	</div>
-</div>
+<template lang="pug">
+.container
+	.row
+		.col-md-12
+			div(:class="'alert alert-' + className")
+				slot(name="body")
 </template>
 
 <style lang="css" scoped>

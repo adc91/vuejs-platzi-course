@@ -1,13 +1,11 @@
-<template>
-  <div class="card">
-    <img :src="track.album.images[1].url" :alt="track.album.name" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">{{ track.name }}</h5>
-      <p class="card-text">{{ track.artists[0].name }}</p>
-      <button @click="selectTrack()" class="btn btn-primary">Preview</button>
-      <button @click="goToTrack(track.id)" class="btn btn-default">Detalle</button>
-    </div>
-  </div>
+<template lang="pug">
+.card
+  img(:src="track.album.images[1].url" :alt="track.album.name" class="card-img-top")
+  .card-body
+    h5(class="card-title") {{ track.name }}
+    p(class="card-text") {{ track.artists[0].name }}
+    button(@click="selectTrack()" class="btn btn-primary") Preview
+    button(@click="goToTrack(track.id)" class="btn btn-info") Detalle
 </template>
 
 <script>
@@ -42,5 +40,6 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin-bottom: 20px;
+  button { margin-right: 10px }
 }
 </style>

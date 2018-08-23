@@ -1,12 +1,9 @@
-<template>
-  <div class="container" v-if="track && track.album">
-      <div class="player-content">
-        <pm-player/>
-      </div>
-      <div class="offset-md-4 col-md-4">
-        <pm-track :track="track"/>    
-      </div>
-  </div>
+<template lang="pug">
+.container(v-if="track && track.album")
+  .player-content
+    pm-player
+  .offset-md-4.col-md-4
+    pm-track(:track="track")
 </template>
 
 <script>

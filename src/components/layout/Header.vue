@@ -1,21 +1,18 @@
-<template>
-	<nav class="navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Platzi Music - Está Vue-nísimo</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarsExample02">
-			<ul class="navbar-nav mr-auto">
-				<router-link tag="li" to="/">
-					<a class="nav-link">Buscar <span class="sr-only"></span></a>
-				</router-link>
-				<router-link tag="li" to="about">
-					<a class="nav-link">About <span class="sr-only"></span></a>
-				</router-link>
-			</ul>
-		</div>
-	</nav>
+<template lang="pug">
+nav.navbar.navbar-expand.navbar-dark.bg-dark
+  a.navbar-brand(href='/') Platzi Music - Está Vue-nísimo
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navBarMain', aria-controls='navBarMain', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navBarMain.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      router-link(tag='li', to='/')
+        a.nav-link
+          | Buscar
+          span.sr-only
+      router-link(tag='li', to='about')
+        a.nav-link
+          | About
+          span.sr-only
 </template>
 
 <style scoped>

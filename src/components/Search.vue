@@ -1,35 +1,29 @@
-<template lang="html">
-  <div id="main">
-	<div class="container">
-      <div class="logo">
-        <img src="@/assets/logo.png" alt="Logo">
-      </div>
-      <div class="form-group">
-        <label for="searchQuery"><strong>Ingrese el nombre del track, artista o álbum:</strong></label>
-        <input type="text" class="form-control" v-on:keyup.enter="search" v-model="searchQuery" placeholder="Ej: trevor rabin, the race of his life">
-      </div>
+<template lang="pug">
+#main
+  .container
+    .logo
+      img(src='@/assets/logo.png', alt='Logo')
 
-      <button class="btn btn-primary" @click="search">Buscar</button>
+    .form-group
+      label(for='searchQuery')
+        strong Ingrese el nombre del track, artista o álbum:
 
-      <pm-player/>
+      input.form-control(type='text', v-on:keyup.enter='search', v-model='searchQuery', placeholder='Ej: trevor rabin, the race of his life')
 
-      <pm-loader v-show="isLoading"/>
+      button(class="btn btn-primary", @click="search") Buscar
 
-      <div v-show="!isLoading">
-        <h5>{{ searchTotalResults }}</h5>
+      pm-player
+      pm-loader(v-show="isLoading")
 
-        <pm-notification v-show="notification.show" :class-name="notification.className" :body="notification.body">
-          <div slot="body">{{ notification.body }}</div>
-        </pm-notification>
+      div(v-show="!isLoading")
+        h5 {{ searchTotalResults }}
 
-        <div class="row">
-          <div class="col-sm-6 col-md-3 col-lg-3" v-for="t in tracks">
-            <pm-track v-blur="t.preview_url" :track="t" :class="{ 'is-active' : t.id === selectedTrack.id }" @select="setSelectedTrack"/>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        pm-notification(v-show="notification.show" :class-name="notification.className" :body="notification.body")
+          div(slot="body") {{ notification.body }}
+
+        .row
+          .col-sm-6.col-md-3.col-lg-3(v-for='t in tracks')
+            pm-track(v-blur='t.preview_url', :track='t', :class="{ 'is-active' : t.id === selectedTrack.id }", @select='setSelectedTrack')
 </template>
 
 <script>
@@ -64,7 +58,9 @@
     },
     computed: {
       searchTotalResults () {
-        return `Mostrando ${this.tracks.length} resultados de ${this.tracksTotal}`
+        if (this.tracksTotal > 0) {
+          return `Mostrando ${this.tracks.length} resultados de ${this.tracksTotal}`
+        }
       },
       show () {
         return this.notification.show
@@ -110,3 +106,9 @@
     }
   }
 </script>
+
+<style scoped>
+button {
+  margin-top: 15px;
+}
+</style>

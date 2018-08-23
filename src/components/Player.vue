@@ -1,17 +1,13 @@
-<template>
-	<div class="container" v-if="track && track.album">
-    <div class="row">
-      <div class="col-md-2">
-        <img :src="track.album.images[0].url" :alt="track.album.name" class="rounded-circle">
-      </div>
-      <div class="col-md-10">
-        <strong>{{ track.name }}</strong>
-        <div class="album">{{ track.album.name }}</div>
-        <div class="album">{{ track.duration_ms|ms-to-mm }}</div>
-        <audio :src="track.preview_url" controls autoplay="true"></audio>
-      </div>
-    </div>
-	</div>
+<template lang="pug">
+.container(v-if="track && track.album")
+  .row
+    .col-md-2
+      img(:src="track.album.images[0].url" :alt="track.album.name" class="rounded-circle")
+    .col-md-10
+      strong {{ track.name }}
+      .album {{ track.album.name }}
+      .album {{ track.duration_ms|ms-to-mm }}
+      audio(:src="track.preview_url" controls autoplay="true")
 </template>
 
 <script>
