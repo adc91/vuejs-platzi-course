@@ -13,13 +13,16 @@
       button(class="btn btn-primary", @click="search") Buscar
 
       pm-player
-      pm-loader(v-show="isLoading")
+
+      transition(name="move")
+        pm-loader(v-show="isLoading")
 
       div(v-show="!isLoading")
         h5 {{ searchTotalResults }}
 
-        pm-notification(v-show="notification.show" :class-name="notification.className" :body="notification.body")
-          div(slot="body") {{ notification.body }}
+        transition(name="move")
+          pm-notification(v-show="notification.show" :class-name="notification.className" :body="notification.body")
+            div(slot="body") {{ notification.body }}
 
         .row
           .col-sm-6.col-md-3.col-lg-3(v-for='t in tracks')

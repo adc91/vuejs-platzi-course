@@ -10,7 +10,7 @@
         button.btn.btn-info(@click="selectTrack") Reproducir Preview
 
     .col-9
-      h1 {{ track.name }}
+      h3 {{ trackTitle }}
 
       p
         strong Artista:&nbsp;
@@ -25,8 +25,9 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapGetters } from 'vuex'
+
 import trackMixin from '@/mixins/track'
-import trackService from '@/services/track'
 import PmPlayer from '@/components/Player.vue'
 
 export default {
@@ -34,18 +35,19 @@ export default {
   components: {
     PmPlayer
   },
-  data () {
-    return {
-      track: {}
-    }
+  computed: {
+    ...mapState(['track']),
+    ...mapGetters(['trackTitle'])
   },
   created () {
     const id = this.$route.params.id
 
-    trackService.getById(id)
-      .then((res) => {
-        this.track = res
-      })
+    if (!this.track || this.track.id || this.track.id !== id) {
+      this.getTrackById({ id })
+    }
+  },
+  methods: {
+    ...mapActions(['getTrackById'])
   }
 }
 </script>

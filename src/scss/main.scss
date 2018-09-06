@@ -20,3 +20,14 @@ h5 { margin: 25px 0; }
 .is-active {
 	border: 1px solid #999;
 }
+
+.move-enter-active,
+.move-leave-active {
+  transform: translateX(0);
+  transition: all .3s linear;
+}
+
+.move-enter,
+.move-leave-to {
+  transform: translateX(100%);
+}
