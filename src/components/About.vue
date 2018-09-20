@@ -1,5 +1,8 @@
 <template lang="pug">
-.container
+.container.about
 	h1 Nosotros
-	p Esta es la página de <strong>ABOUT</strong>
+	p Este proyecto fue desarrollado con VueJS y a la API proveída por
+		| &nbsp;
+		strong Platzi
+		| &nbsp;para el desarrollo del curso.
 </template>

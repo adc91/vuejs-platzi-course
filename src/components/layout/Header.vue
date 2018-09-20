@@ -5,13 +5,9 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark
     span.navbar-toggler-icon
   #navBarMain.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      router-link(tag='li', to='/')
-        a.nav-link
-          | Buscar
-          span.sr-only
       router-link(tag='li', to='about')
         a.nav-link
-          | About
+          | Acerca de
           span.sr-only
 </template>
 

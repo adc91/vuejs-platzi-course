@@ -2,7 +2,7 @@
 .footer-copyright.text-center.py-3
   | Desarrollado con&nbsp;
   strong VueJS
-  |  -
+  |  -&nbsp;
   a(href='https://www.twitter.com/@adc_91', target='_blank') @adc_91
 </template>
 
