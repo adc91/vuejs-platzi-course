@@ -6,11 +6,11 @@
 
     .form-group
       label(for='searchQuery')
-        strong Ingrese el nombre del track, artista o álbum:
+        strong {{ $t('search.label') }}
 
-      input.form-control(type='text', v-on:keyup.enter='search', v-model='searchQuery', placeholder='Ej: trevor rabin, the race of his life')
+      input.form-control(type='text', v-on:keyup.enter='search', v-model='searchQuery', :placeholder="$t('search.placeholder')")
 
-      button(class="btn btn-primary", @click="search") Buscar
+      button(class="btn btn-primary", @click="search") {{ $t('search.button') }}
 
       pm-player
 
@@ -62,7 +62,7 @@
     computed: {
       searchTotalResults () {
         if (this.tracksTotal > 0) {
-          return `Mostrando ${this.tracks.length} resultados de ${this.tracksTotal}`
+          return this.$i18n.t('search.total_results', [this.tracks.length, this.tracksTotal])
         }
       },
       show () {
@@ -90,7 +90,7 @@
           .then(res => {
             // Desplegar barra de notificicion de resultados
             this.notification.show = true
-            this.notification.body = `Se han encontrado ${res.tracks.total} resultados en total...`
+            this.notification.body = this.$i18n.t('search.total_tracks', [res.tracks.total])
 
             if (res.tracks.total === 0) {
               this.notification.className = 'danger'

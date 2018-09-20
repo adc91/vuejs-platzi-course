@@ -5,6 +5,7 @@ import BootstrapVue from 'bootstrap-vue'
 
 import routes from '@/routes'
 import store from '@/store'
+import i18n from '@/i18n'
 
 // BootstrapVue
 import 'bootstrap/dist/css/bootstrap.css'
@@ -33,7 +34,8 @@ new Vue({
   el: '#app',
   render: h => h(App),
   router: vueRoutes,
-  store
+  store,
+  i18n
 })
 
 Vue.use(BootstrapVue)

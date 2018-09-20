@@ -4,8 +4,8 @@
   .card-body
     h5(class="card-title") {{ track.name }}
     p(class="card-text") {{ track.artists[0].name }}
-    button(@click="selectTrack()" class="btn btn-primary") Preview
-    button(@click="goToTrack(track.id)" class="btn btn-info") Detalle
+    button(@click="selectTrack()" class="btn btn-primary") {{ $t('track.preview') }}
+    button(@click="goToTrack(track.id)" class="btn btn-info") {{ $t('track.detail') }}
 </template>
 
 <script>

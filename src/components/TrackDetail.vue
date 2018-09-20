@@ -7,19 +7,19 @@
     .col-3
       img(:src="track.album.images[0].url")
       p
-        button.btn.btn-info(@click="selectTrack") Reproducir Preview
+        button.btn.btn-info(@click="selectTrack") {{ $t('trackDetail.play_preview') }}
 
     .col-9
       h3 {{ trackTitle }}
 
       p
-        strong Artista:&nbsp;
+        strong {{ $t('trackDetail.name_artist') }}:&nbsp;
         span {{ track.artists[0].name }}
       p
-        strong Album:&nbsp;
+        strong {{ $t('trackDetail.name_album') }}:&nbsp;
         span {{ track.album.name }}
       p
-        strong URL en Spotify:&nbsp;
+        strong {{ $t('trackDetail.url_spotify') }}:&nbsp;
         a(:href="track.external_urls.spotify", target="_blank") {{ track.external_urls.spotify }}
 
 </template>
